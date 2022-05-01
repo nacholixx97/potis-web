@@ -1,0 +1,26 @@
+<app-page-loader></app-page-loader>
+
+<app-navbar *ngIf="!isLogin()"></app-navbar>
+
+<div class="container mt-2">
+    <router-outlet></router-outlet>
+</div>
+
+<app-toasts></app-toasts>
+
+<!-- Modal de error -->
+<div class="modal fade" id="modalError" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Error</h6>
+            </div>
+            <div class="modal-body" *ngIf="errorMessage">
+                <p class="label-input">{{ errorMessage }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-danger button" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

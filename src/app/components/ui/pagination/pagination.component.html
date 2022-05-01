@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col">
+        <span class="info-table">Total registros: <b>{{ totalRows }}</b> - Mostrando <b>{{ totalPages == 0 ? 0 : selectedPage }}</b> de <b>{{ totalPages }}</b> {{ totalPages == 1 ? 'hoja' : 'hojas' }}.</span>
+    </div>
+    <div class="col">
+        <nav>
+            <ul class="pagination pagination-sm justify-content-end">
+                <li class="page-item" [ngClass]="{'disabled': selectedPage == 1}"><button class="page-link" (click)="previousPage()" [disabled]="selectedPage == 1">Anterior</button></li>    
+                <li class="page-item" [ngClass]="{'disabled': selectedPage == totalPages}"><button class="page-link" (click)="nextPage()">Siguiente</button></li>
+            </ul>
+        </nav>
+    </div>
+</div>

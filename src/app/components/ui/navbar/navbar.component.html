@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">{{ brand_name }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" *ngIf="validatePermission()">
+                    <a class="nav-link" routerLink="/" routerLinkActive="active">Resumen</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownNew" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Nueva
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownNew">
+                        <li><a class="dropdown-item" routerLink="/new/sell" routerLinkActive="active">Venta</a></li>
+                        <li><a class="dropdown-item" routerLink="/new/reposition"
+                                routerLinkActive="active">Reposición</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" *ngIf="validatePermission()">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownProducts" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Productos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownProducts">
+                        <li><a class="dropdown-item" routerLink="/products/list" routerLinkActive="active">Listado</a>
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/products/stock" routerLinkActive="active">Stock</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" *ngIf="validatePermission()">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownSells" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Ventas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownSells">
+                        <li><a class="dropdown-item" routerLink="/sells/list" routerLinkActive="active">Listado</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" *ngIf="validatePermission()">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownConfig" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Configuración
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownConfig">
+                        <li><a class="dropdown-item" routerLink="/config/user/list" routerLinkActive="active">Usuarios</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item dropstart">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownUser" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-item" routerLink="/config/my-profile" routerLinkActive="active" aria-expanded="false">
+                                Mi perfil
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-item" (click)="logout()" aria-expanded="false">
+                                Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,81 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <h5>{{ title }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- Tabla de productos -->
+        <app-filter 
+            [filters]="filters" 
+            [searchFunction]="getList"
+            [headers]="headers"
+            [keys]="keys"
+            [(pageSize)]="pageSize"
+            [(sortingModel)]="sortingModel"
+        ></app-filter>
+        <app-table 
+            [headers]="headers" 
+            [tableSource]="dataSource" 
+            [actions]="actions" 
+            [keys]="keys"
+            [(selectedRow)]="selectedProduct"
+            [onSelectedRow]="openModal"
+            [showSelectRow]="true"
+            [selectedRowOptions]="selectedOptions"
+            [rowConditions]="rowConditions"
+        ></app-table>
+        <app-pagination 
+            [previousPage]="previousPage" 
+            [nextPage]="nextPage" 
+            [selectedPage]="selectedPage" 
+            [pageSize]="pageSize"
+            [totalRows]="totalRows" 
+            [totalPages]="totalPages"
+        ></app-pagination>
+
+        <hr class="mb-5">
+
+        <!-- Tabla de Reposición -->
+        <div *ngIf="productsToAdd.length > 0">
+            <div class="d-flex justify-content-center">
+                <h6>Reposición</h6>
+            </div>
+            <app-table 
+                [headers]="headersToAdd" 
+                [tableSource]="productsToAdd" 
+                [actions]="actionsToAdd" 
+                [keys]="keysToAdd"
+                [(selectedRow)]="selectedToDelete"
+                [onSelectedRow]="cancel"
+                [showSelectRow]="true"
+                [selectedRowOptions]="selectedToDeleteOptions"
+            ></app-table>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-outline-primary button" (click)="confirmReposition()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-new-reposition" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" *ngIf="selectedProduct">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Añadir - {{ selectedProduct.name }}</h6>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="search" class="label-form">Cantidad</label>
+                    <input type="number" class="form-control input-form" [(ngModel)]="amount">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary button" (click)="resetReposition()" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary button" [disabled]="validationForm()" (click)="addToAdd()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>

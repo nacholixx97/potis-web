@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+                <h5>{{ title }}</h5>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a routerLink="/config/user/new"><fa-icon [icon]="addIcon" class="icon-size"></fa-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <app-user-table></app-user-table>
+    </div>
+</div>

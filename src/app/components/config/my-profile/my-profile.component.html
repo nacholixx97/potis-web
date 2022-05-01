@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+                <h5>{{ title }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <h5>Cambiar contraseña</h5>
+
+        <form [formGroup]="changePassForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <div class="label-form mt-3">Confirmar</div>
+                <input type="password" class="form-control" formControlName="password" id="password">
+            </div>
+            <div class="form-group">
+                <div class="label-form mt-3">Confirmar contraseña</div>
+                <input type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword">
+                <div class="form-text text-danger" *ngIf="!validatePassword()">Las contraseñas no coinciden.</div>
+            </div>
+            <div class="form-group">
+                <input class="form-check-input mt-4 me-2" (change)="togglePass()" type="checkbox" formControlName="showPass" id="togglePassword">
+                <label class="form-check-label label-form mt-4" for="togglePassword">
+                    Mostrar contraseñas
+                </label>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-sm btn-outline-success mt-4"
+                    [disabled]="!changePassForm.valid || !validatePassword()">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

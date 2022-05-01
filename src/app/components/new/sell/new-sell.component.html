@@ -1,0 +1,97 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <h5>{{ title }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- Tabla de productos -->
+        <app-filter 
+            [filters]="filters" 
+            [searchFunction]="getList"
+            [headers]="headers"
+            [keys]="keys"
+            [(pageSize)]="pageSize"
+            [(sortingModel)]="sortingModel"
+        ></app-filter>
+        <app-table 
+            [headers]="headers" 
+            [tableSource]="dataSource" 
+            [actions]="actions" 
+            [keys]="keys"
+            [(selectedRow)]="selectedProduct"
+            [onSelectedRow]="openModal"
+            [showSelectRow]="true"
+            [selectedRowOptions]="selectedOptions"
+            [rowConditions]="rowConditions"
+        ></app-table>
+        <app-pagination 
+            [previousPage]="previousPage" 
+            [nextPage]="nextPage" 
+            [selectedPage]="selectedPage" 
+            [pageSize]="pageSize"
+            [totalRows]="totalRows" 
+            [totalPages]="totalPages"
+        ></app-pagination>
+
+        <hr class="mb-5">
+
+        <!-- Tabla de productos a vender -->
+        <div *ngIf="productsToSell.length > 0">
+            <div class="d-flex justify-content-center">
+                <h6>Productos a vender</h6>
+            </div>
+            <app-table 
+                [headers]="headersToSell" 
+                [tableSource]="productsToSell" 
+                [actions]="actionsToSell" 
+                [keys]="keysToSell"
+                [(selectedRow)]="selectedToDelete"
+                [onSelectedRow]="cancel"
+                [showSelectRow]="true"
+                [selectedRowOptions]="selectedToDeleteOptions"
+            ></app-table>
+            <div class="ms-5">
+                <h6>Total Factura: {{ total | currency }}</h6>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-outline-primary button" (click)="confirmSell()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-new-sell" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" *ngIf="selectedProduct">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Añadir - {{ selectedProduct.name }}</h6>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="search" class="label-form">Cantidad</label>
+                    <input type="number" class="form-control input-form" [(ngModel)]="amountToSell" (change)="refreshAmountTotal()" (keyup)="refreshAmountTotal()">
+                </div>
+                <div class="form-group">
+                    <label for="search" class="label-form">Monto Total</label>
+                    <input type="number" class="form-control input-form" disabled [(ngModel)]="amountTotalWithDiscount">
+                </div>
+                <div class="form-group">
+                    <label for="search" class="label-form">Descuento (%)</label>
+                    <input type="number" class="form-control input-form" [(ngModel)]="discount" (change)="refreshAmountTotal()" (keyup)="refreshAmountTotal()">
+                </div>
+                <div class="form-group">
+                    <label for="search" class="label-form">Stock Restante</label>
+                    <input type="number" class="form-control input-form" disabled [(ngModel)]="stock">
+                </div>
+                <span *ngIf="showError()" class="label-danger">Parece que nos quedamos sin stock!</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary button" (click)="resetSell()" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary button" [disabled]="validationForm()" (click)="addToSell()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>

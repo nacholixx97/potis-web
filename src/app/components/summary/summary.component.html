@@ -1,0 +1,33 @@
+<div class="card mb-4">
+    <h5 class="card-header">Ventas del día</h5>
+    <div class="card-body">
+        <h6 *ngIf="!mostSelledTodayData.length">Todavía no hemos realizado la primera venta del día.</h6>
+
+        <app-chart chartTitle="Total" [data]="mostSelledTodayData" [categoryName]="category" type="bar"
+            [yTitle]="yTitle" *ngIf="mostSelledTodayData.length"></app-chart>
+            
+        <div class="row d-flex justify-content-center" *ngIf="totalGenerated">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="card bg-primary">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-end"><fa-icon [icon]="moneyIcon" class="notify-icon"></fa-icon></div>
+
+                        <p class="notify-label">Has generado</p>
+                        <h3 class="notify-label">{{ totalGenerated | currency }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" *ngIf="mostSelledData.length && mostSelledByWaistData.length">
+    <h5 class="card-header">Total Ventas</h5>
+    <div class="card-body">
+        <app-chart chartTitle="Total" [data]="mostSelledData" [categoryName]="category" type="bar" [yTitle]="yTitle"
+            *ngIf="mostSelledData.length"></app-chart>
+
+        <app-chart chartTitle="Talles" [data]="mostSelledByWaistData" [categoryName]="category" type="pie"
+            *ngIf="mostSelledByWaistData.length"></app-chart>
+    </div>
+</div>

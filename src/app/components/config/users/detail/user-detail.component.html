@@ -1,0 +1,76 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+                <h5>{{ isEditing() ? titleEdition : title }}</h5>
+            </div>
+            <div class="col" *ngIf="!isEditing()">
+                <div class="d-flex justify-content-end">
+                    <div class="btn-group dropstart">
+                        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown">
+                            <fa-icon [icon]="menuIcon"></fa-icon>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item clickeable" (click)="toggleEdit()">Modificar</a></li>
+                            <li><a class="dropdown-item clickeable" (click)="openDeletionModal()">Eliminar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mt-3">
+                <label class="label-form">Apellido</label>
+                <input type="text" class="form-control input-form" formControlName="lastname">
+            </div>
+            <div class="form-group mt-3">
+                <label class="label-form">Nombre</label>
+                <input type="text" class="form-control input-form" formControlName="name">
+            </div>
+            <div class="form-group mt-3">
+                <label class="label-form">Usuario</label>
+                <input type="text" class="form-control input-form" [value]="getUsername()" [disabled]="true">
+            </div>
+            <div class="form-group mt-3">
+                <label class="label-form">Email</label>
+                <input type="email" class="form-control input-form" formControlName="email">
+            </div>
+            <div class="form-check form-switch mt-3">
+                <input class="form-check-input" type="checkbox" role="switch" formControlName="active" id="status">
+                <label class="form-check-label" for="status">Activo</label>
+            </div>
+
+            <div *ngIf="!isEditing()" class="d-flex justify-content-end">
+                <a routerLink="/config/user/list" class="btn btn-sm btn-outline-primary mt-2">Volver</a>
+            </div>
+
+            <div *ngIf="isEditing()" class="d-flex justify-content-end">
+                <button type="button" class="btn btn-sm btn-outline-primary mt-2 me-1" (click)="toggleEdit()">Cancelar</button>
+                <button type="submit" class="btn btn-sm btn-outline-success mt-2"
+                    [disabled]="!userForm.valid">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal de eliminación -->
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Seguro desea eliminar el usuario?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-sm btn-outline-danger" (click)="delete()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div *ngIf="loading" class="loader-container">
+    <div class="loader"></div>
+    <div *ngIf="!!message">
+        <div class="loader-message-container">{{ message }}</div>
+    </div>
+</div>

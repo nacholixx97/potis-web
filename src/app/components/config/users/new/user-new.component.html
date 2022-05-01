@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+                <h5>{{ title }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mt-3">
+                <label class="label-form">Apellido</label>
+                <input type="text" class="form-control input-form" formControlName="lastname">
+            </div>
+            <div class="form-group mt-3">
+                <label class="label-form">Nombre</label>
+                <input type="text" class="form-control input-form" formControlName="name">
+            </div>
+            <div class="form-group mt-3">
+                <label class="label-form">Usuario</label>
+                <input type="text" class="form-control input-form" formControlName="username">
+            </div>
+            <div class="form-group mt-3">
+                <label class="label-form">Contraseña</label>
+                <input type="text" class="form-control input-form" formControlName="password">
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-sm btn-outline-primary mt-2 me-1" routerLink="/config/user/list">Volver</button>
+                <button type="submit" class="btn btn-sm btn-outline-success mt-2"
+                    [disabled]="!userForm.valid">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

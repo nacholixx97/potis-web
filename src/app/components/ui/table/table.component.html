@@ -1,0 +1,32 @@
+<div class="table-responsive mt-2">
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th *ngFor="let header of headers">{{ header }}</th>
+                <th *ngIf="showActions()" class="d-flex justify-content-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let source of tableSource" [ngClass]="rowConditions != null ? (rowConditions.function(source[rowConditions.firstCondition], source[rowConditions.secondCondition], '<=') ? rowConditions.class : '') : ''">
+                <td *ngFor="let key of keys">
+                    <span *ngIf="key.type == ''">{{ source[key.name] }}</span>
+                    <span *ngIf="key.type == 'date'">{{ source[key.name] | dateEs }}</span>
+                    <span *ngIf="key.type == 'status'">{{ source[key.name] | status }}</span>
+                    <span *ngIf="key.type == 'currency'">{{ source[key.name] | currency }}</span>
+                    <span *ngIf="key.type == 'percent'">{{ source[key.name] | percent }}</span>
+                </td>
+                <td *ngIf="showActions()" class="d-flex justify-content-center">
+                    <span *ngFor="let action of actions">
+                        <span *ngIf="action.redirect" class="clickeable" [routerLink]="action.redirect(source[action.redirectKey])">
+                            <fa-icon [icon]="action.icon" [ngStyle]="{ 'color': action.color }"></fa-icon>
+                        </span>
+                        <span *ngIf="action.action" class="clickeable" (click)="action.action(source)">
+                            <fa-icon [icon]="action.icon" [ngStyle]="{ 'color': action.color }"></fa-icon>
+                        </span>
+                    </span>
+                    <span *ngIf="showSelectRow" class="clickeable" (click)="selectRow(source)"><fa-icon [icon]="selectedRowOptions.icon" class="icon-size" [ngStyle]="{ 'color': selectedRowOptions.color }"></fa-icon></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
