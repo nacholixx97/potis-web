@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataGridModel, ListResponse, SortingModel } from '../interfaces/grid.interface';
 import { ErrorService } from './error.service';
 import { LoginService } from './login.service';
+import { environment } from '../../environments/environment';
 
 export interface Stock {
     name: string,
@@ -18,7 +19,7 @@ export interface Stock {
 
 export class StockService {
 
-    private url: string = 'http://localhost:3000/api/stock';
+    private url: string = `${environment.apiUrl}stock`;
     private httpHeader = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',

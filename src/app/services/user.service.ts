@@ -4,6 +4,7 @@ import { catchError } from 'rxjs';
 import { DataGridModel, ListResponse, SortingModel } from '../interfaces/grid.interface';
 import { ErrorService } from './error.service';
 import { LoginService } from './login.service';
+import { environment } from '../../environments/environment';
 
 export interface User {
     user_id: number;
@@ -19,7 +20,7 @@ export interface User {
 })
 export class UserService {
 
-    private url: string = 'http://localhost:3000/api/user';
+    private url: string = `${environment.apiUrl}user`;
     private httpHeader = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',

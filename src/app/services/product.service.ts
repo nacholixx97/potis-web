@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataGridModel, ListResponse, SortingModel } from '../interfaces/grid.interface';
 import { ErrorService } from './error.service';
 import { LoginService } from './login.service';
+import { environment } from '../../environments/environment';
 
 export interface Product {
     product_id: number;
@@ -25,7 +26,7 @@ export interface Product {
 
 export class ProductService {
 
-    private url: string = 'http://localhost:3000/api/product';
+    private url: string = `${environment.apiUrl}product`;
     private httpHeader = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { ErrorService } from './error.service';
+import { environment } from '../../environments/environment';
 
 export interface LoginRequest {
     username: string;
@@ -14,7 +15,7 @@ export interface LoginRequest {
 })
 export class LoginService {
 
-    private url: string = 'http://localhost:3000/api/auth';
+    private url: string = `${environment.apiUrl}auth`;
     private httpHeader = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'

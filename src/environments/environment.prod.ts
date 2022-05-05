@@ -1,3 +1,6 @@
+import { sharedVariables } from './shared-variables';
+
 export const environment = {
-  production: true
+    production: true,
+    apiUrl: sharedVariables.apiUrl
 };

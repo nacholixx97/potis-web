@@ -4,13 +4,14 @@ import { catchError } from 'rxjs';
 import { DataGridModel, ListResponse, SortingModel } from '../interfaces/grid.interface';
 import { ErrorService } from './error.service';
 import { LoginService } from './login.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SellService {
 
-    private url: string = 'http://localhost:3000/api/sell';
+    private url: string = `${environment.apiUrl}sell`;
     private httpHeader = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
