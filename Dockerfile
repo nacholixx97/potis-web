@@ -2,10 +2,10 @@
 FROM node:14-alpine as builder
 WORKDIR /usr/src/potis
 COPY .  /usr/src/potis/
-RUN npm install @angular/cli -g
+RUN npm install @angular/cli@13.0.1 -g
 RUN npm i
 # A head-of-time compilation
-RUN ng build --prod
+RUN ng build
 
 # stage 2
 FROM nginx:1.17.1-alpine
