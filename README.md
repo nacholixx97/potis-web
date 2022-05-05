@@ -8,6 +8,7 @@ FILE_STORAGE_PATH = *'public/uploads'* **(Indica el path en donde se subiran los
 DB_URL = *'postgres://localhost/db'* **(Indica la url de la base de datos)** <br />
 <br />
 DB_HOST = *'127.0.0.1'* **(IP de la base)** <br />
+DB_PORT = *'5432'* **(Puerto de la base)** <br />
 DB_USER = *'user'* **(Usuario de la base)** <br />
 DB_PASSWORD = *'pass'* **(Contraseña de la base)** <br />
 DB_DATABASE = *'db'* **(Nombre de la base)** <br />
