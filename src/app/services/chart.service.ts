@@ -4,6 +4,7 @@ import * as Highcharts from 'highcharts';
 import { catchError, retry } from 'rxjs';
 import { ErrorService } from './error.service';
 import { LoginService } from './login.service';
+import { environment } from '../../environments/environment';
 
 export interface ChartOptions {
     highcharts: typeof Highcharts;
@@ -18,7 +19,7 @@ export class ChartService {
     chartOptions: Highcharts.Options = { };
     colors: string[] = ['#0d6efd', '#6610f2', '#d63384', '#dc3545', '#0d6efd', '#198754', '#0dcaf0', '#ffc107', '#dc3545', '#fd7e14', '#ffc107', '#198754', '#20c997', '#0dcaf0', '#6c757d', '#6f42c1'];
 
-    private url: string = 'http://localhost:3000/api/chart';
+    private url: string = `${environment.apiUrl}chart`;
     private httpHeader = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
