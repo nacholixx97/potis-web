@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { ValidationService } from 'src/app/services/validation.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { ValidationService } from 'src/app/services/validation.service';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-    brand_name: string = "Poti's Management";
+    brand_name: string = environment.brandName;
     username: string = null;
 
     constructor(
