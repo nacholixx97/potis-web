@@ -2,21 +2,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col">
-                <h5>{{ isEditing() ? titleEdition : title }}</h5>
-            </div>
-            <div class="col" *ngIf="!isEditing()">
-                <div class="d-flex justify-content-end">
-                    <div class="btn-group dropstart">
-                        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown">
-                            <fa-icon [icon]="menuIcon"></fa-icon>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item clickeable" (click)="toggleEdit()">Modificar</a></li>
-                            <li><a class="dropdown-item clickeable" (click)="openDeletionModal()">Eliminar</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <h6>{{ isEditing() ? titleEdition : title }}</h6>
             </div>
         </div>
     </div>
@@ -44,6 +30,8 @@
             </div>
 
             <div *ngIf="!isEditing()" class="d-flex justify-content-end">
+                <button class="btn btn-sm btn-outline-danger mt-2 me-2" *ngIf="!isEditing() && !isAdmin()" (click)="openDeletionModal()" type="button">Eliminar</button>
+                <button class="btn btn-sm btn-outline-primary mt-2 me-2" *ngIf="!isEditing() && !isAdmin()" (click)="toggleEdit()" type="button">Modificar</button>
                 <a routerLink="/config/user/list" class="btn btn-sm btn-outline-primary mt-2">Volver</a>
             </div>
 
@@ -61,7 +49,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminación</h5>
+                <h6 class="modal-title" id="exampleModalLabel">Eliminación</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

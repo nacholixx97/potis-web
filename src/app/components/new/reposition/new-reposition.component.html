@@ -2,59 +2,64 @@
     <div class="card-header">
         <div class="row">
             <div class="col-6">
-                <h5>{{ title }}</h5>
+                <h6>{{ title }}</h6>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <!-- Tabla de productos -->
-        <app-filter 
-            [filters]="filters" 
-            [searchFunction]="getList"
-            [headers]="headers"
-            [keys]="keys"
-            [(pageSize)]="pageSize"
-            [(sortingModel)]="sortingModel"
-        ></app-filter>
-        <app-table 
-            [headers]="headers" 
-            [tableSource]="dataSource" 
-            [actions]="actions" 
-            [keys]="keys"
-            [(selectedRow)]="selectedProduct"
-            [onSelectedRow]="openModal"
-            [showSelectRow]="true"
-            [selectedRowOptions]="selectedOptions"
-            [rowConditions]="rowConditions"
-        ></app-table>
-        <app-pagination 
-            [previousPage]="previousPage" 
-            [nextPage]="nextPage" 
-            [selectedPage]="selectedPage" 
-            [pageSize]="pageSize"
-            [totalRows]="totalRows" 
-            [totalPages]="totalPages"
-        ></app-pagination>
-
-        <hr class="mb-5">
-
-        <!-- Tabla de Reposición -->
-        <div *ngIf="productsToAdd.length > 0">
-            <div class="d-flex justify-content-center">
-                <h6>Reposición</h6>
-            </div>
+        <div *ngIf="!totalRows">
+            No hay productos cargados.
+        </div>
+        <div *ngIf="totalRows">
+            <!-- Tabla de productos -->
+            <app-filter 
+                [filters]="filters" 
+                [searchFunction]="getList"
+                [headers]="headers"
+                [keys]="keys"
+                [(pageSize)]="pageSize"
+                [(sortingModel)]="sortingModel"
+            ></app-filter>
             <app-table 
-                [headers]="headersToAdd" 
-                [tableSource]="productsToAdd" 
-                [actions]="actionsToAdd" 
-                [keys]="keysToAdd"
-                [(selectedRow)]="selectedToDelete"
-                [onSelectedRow]="cancel"
+                [headers]="headers" 
+                [tableSource]="dataSource" 
+                [actions]="actions" 
+                [keys]="keys"
+                [(selectedRow)]="selectedProduct"
+                [onSelectedRow]="openModal"
                 [showSelectRow]="true"
-                [selectedRowOptions]="selectedToDeleteOptions"
+                [selectedRowOptions]="selectedOptions"
+                [rowConditions]="rowConditions"
             ></app-table>
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-outline-primary button" (click)="confirmReposition()">Confirmar</button>
+            <app-pagination 
+                [previousPage]="previousPage" 
+                [nextPage]="nextPage" 
+                [selectedPage]="selectedPage" 
+                [pageSize]="pageSize"
+                [totalRows]="totalRows" 
+                [totalPages]="totalPages"
+            ></app-pagination>
+
+            <hr class="mb-5">
+
+            <!-- Tabla de Reposición -->
+            <div *ngIf="productsToAdd.length > 0">
+                <div class="d-flex justify-content-center">
+                    <h6>Reposición</h6>
+                </div>
+                <app-table 
+                    [headers]="headersToAdd" 
+                    [tableSource]="productsToAdd" 
+                    [actions]="actionsToAdd" 
+                    [keys]="keysToAdd"
+                    [(selectedRow)]="selectedToDelete"
+                    [onSelectedRow]="cancel"
+                    [showSelectRow]="true"
+                    [selectedRowOptions]="selectedToDeleteOptions"
+                ></app-table>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-outline-primary button" (click)="confirmReposition()">Confirmar</button>
+                </div>
             </div>
         </div>
     </div>

@@ -49,8 +49,8 @@ export class UserTableComponent implements OnInit {
         { name: 'Activo', key: 'active', type: 'check', value: true },
     ];
     sortingModel: SortingModel = {
-        sortBy: 'user_id',
-        sortDirection: 'desc'
+        sortBy: 'username',
+        sortDirection: 'asc'
     };
 
     // Variables de paginación

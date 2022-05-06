@@ -1,3 +1,5 @@
+import 
+
 a {
     text-decoration: none;
 }
@@ -12,4 +14,29 @@ a {
 
 .icon {
     font-size: 9em;
+}
+
+input {
+    font-size: 14px;
+}
+
+.buttons {
+    button {
+        margin-top: 1em;
+    }
+
+    @media (min-width: 406px) {
+        button {
+            margin-left: 1em;
+        }
+    }
+
+    @media (max-width: 405px) {
+        button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+    }
 }

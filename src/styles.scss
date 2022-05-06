@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+$font-size: 14px;
+
+body {
+    font-size: $font-size;
+}
+
+ul.dropdown-menu.show {
+    font-size: $font-size;
+}
+
+.navbar-light .navbar-toggler {
+    font-size: $font-size;
+}
+
 .clickeable {
     cursor: pointer;
 }

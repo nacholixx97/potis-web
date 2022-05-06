@@ -1,24 +1,30 @@
-<app-filter 
+<div *ngIf="!totalRows">
+    <p>No se realizaron ventas.</p>
+</div>
+
+<div *ngIf="totalRows">
+    <app-filter 
     [filters]="filters" 
     [searchFunction]="getList"
     [headers]="headers"
     [keys]="keys"
     [(pageSize)]="pageSize"
     [(sortingModel)]="sortingModel"
-></app-filter>
-
-<app-table 
+    ></app-filter>
+    
+    <app-table 
     [headers]="headers" 
     [tableSource]="dataSource" 
     [actions]="actions" 
     [keys]="keys"
-></app-table>
-
-<app-pagination 
+    ></app-table>
+    
+    <app-pagination 
     [previousPage]="previousPage" 
     [nextPage]="nextPage" 
     [selectedPage]="selectedPage" 
     [pageSize]="pageSize"
     [totalRows]="totalRows" 
     [totalPages]="totalPages"
-></app-pagination>
+    ></app-pagination>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCheck, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { SortingModel } from 'src/app/interfaces/grid.interface';
 import { ConfigService } from 'src/app/services/config.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -15,7 +15,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class NewSellComponent implements OnInit {
     // Variables de tabla productos.
-    selectIcon: IconDefinition = faCheck;
+    selectIcon: IconDefinition = faPlus;
     dataSource: any = [];
     headers: string[] = [
         '#',

@@ -10,22 +10,33 @@
                                     <div class="col-12">
                                         <label>Usuario<span class="text-danger">*</span></label>
                                         <div class="input-group">
-                                            <div class="input-group-text"><fa-icon [icon]="userIcon"></fa-icon></div>
-                                            <input type="text" class="form-control" formControlName="username" placeholder="Usuario">
+                                            <div class="input-group-text">
+                                                <fa-icon [icon]="userIcon"></fa-icon>
+                                            </div>
+                                            <input type="text" class="form-control" formControlName="username"
+                                                placeholder="Usuario">
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <label>Contraseña<span class="text-danger">*</span></label>
                                         <div class="input-group">
-                                            <div class="input-group-text"><fa-icon [icon]="passwordIcon"></fa-icon></div>
-                                            <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+                                            <div class="input-group-text">
+                                                <fa-icon [icon]="passwordIcon"></fa-icon>
+                                            </div>
+                                            <input type="password" class="form-control" formControlName="password"
+                                                placeholder="Contraseña">
                                         </div>
                                     </div>
 
-                                    <div class="col-12">
-                                        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary px-4 float-end mt-4">Entrar</button>
-                                        <button type="button" (click)="openRecoverModal()" class="btn btn-primary px-4 float-end mt-4 me-3">Recuperar Contraseña</button>
+                                    <div class="buttons">
+                                        <div class="col-12">
+                                            <button type="submit" [disabled]="!loginForm.valid"
+                                                class="btn btn-sm btn-primary px-4 float-end">Entrar</button>
+                                            <button type="button" (click)="openRecoverModal()"
+                                                class="btn btn-sm btn-primary px-4 float-end">Recuperar
+                                                Contraseña</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -51,13 +62,16 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                <label>Email<span class="text-danger">*</span></label>
-                <input type="email" required class="form-control" [(ngModel)]="recoverEmail" placeholder="Ingrese email">
+                    <label>Email<span class="text-danger">*</span></label>
+                    <input type="email" required class="form-control" [(ngModel)]="recoverEmail"
+                        placeholder="Ingrese email">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-outline-danger button" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-sm btn-outline-primary button" (click)="recoverPassword()">Recuperar</button>
+                <button type="button" class="btn btn-sm btn-outline-danger button"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-sm btn-outline-primary button"
+                    (click)="recoverPassword()">Recuperar</button>
             </div>
         </div>
     </div>

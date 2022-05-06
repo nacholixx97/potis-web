@@ -57,6 +57,10 @@ export class UserDetailComponent implements OnInit {
         })
     }
 
+    isAdmin(): boolean {
+        return this.user.username == 'admin';
+    }
+
     getUsername(): string {
         return this.userForm.get('username').value;
     }

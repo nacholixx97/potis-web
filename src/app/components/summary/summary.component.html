@@ -1,7 +1,7 @@
 <div class="card mb-4">
-    <h5 class="card-header">Ventas del día</h5>
+    <h6 class="card-header">Ventas del día</h6>
     <div class="card-body">
-        <h6 *ngIf="!mostSelledTodayData.length">Todavía no hemos realizado la primera venta del día.</h6>
+        <p *ngIf="!mostSelledTodayData.length">Todavía no se ha realizado la primera venta del día.</p>
 
         <app-chart chartTitle="Total" [data]="mostSelledTodayData" [categoryName]="category" type="bar"
             [yTitle]="yTitle" *ngIf="mostSelledTodayData.length"></app-chart>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="card" *ngIf="mostSelledData.length && mostSelledByWaistData.length">
-    <h5 class="card-header">Total Ventas</h5>
+    <h6 class="card-header">Total Ventas</h6>
     <div class="card-body">
         <app-chart chartTitle="Total" [data]="mostSelledData" [categoryName]="category" type="bar" [yTitle]="yTitle"
             *ngIf="mostSelledData.length"></app-chart>

@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UserListComponent } from './components/config/users/list/user-list.component';
 import { UserDetailComponent } from './components/config/users/detail/user-detail.component';
 import { UserNewComponent } from './components/config/users/new/user-new.component';
-import { ProductStockComponent } from './components/product/stock/product-stock.component';
+import { ProductStockComponent } from './components/stock/list/product-stock.component';
 import { ProductListComponent } from './components/product/list/product-list.component';
 import { ProductNewComponent } from './components/product/new/product-new.component';
 import { SellListComponent } from './components/sell/list/sell-list.component';

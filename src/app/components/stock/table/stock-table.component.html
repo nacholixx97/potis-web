@@ -1,25 +1,31 @@
-<app-filter 
-    [filters]="filters" 
-    [searchFunction]="getList"
-    [headers]="headers"
-    [keys]="keys"
-    [(pageSize)]="pageSize"
-    [(sortingModel)]="sortingModel"
-></app-filter>
+<div *ngIf="!totalRows">
+    No hay productos cargados.
+</div>
 
-<app-table 
-    [headers]="headers" 
-    [tableSource]="dataSource" 
-    [actions]="actions" 
-    [keys]="keys"
-    [rowConditions]="rowConditions"
-></app-table>
+<div *ngIf="totalRows">
+    <app-filter 
+        [filters]="filters" 
+        [searchFunction]="getList"
+        [headers]="headers"
+        [keys]="keys"
+        [(pageSize)]="pageSize"
+        [(sortingModel)]="sortingModel"
+    ></app-filter>
 
-<app-pagination 
-    [previousPage]="previousPage" 
-    [nextPage]="nextPage" 
-    [selectedPage]="selectedPage" 
-    [pageSize]="pageSize"
-    [totalRows]="totalRows" 
-    [totalPages]="totalPages"
-></app-pagination>
+    <app-table 
+        [headers]="headers" 
+        [tableSource]="dataSource" 
+        [actions]="actions" 
+        [keys]="keys"
+        [rowConditions]="rowConditions"
+    ></app-table>
+
+    <app-pagination 
+        [previousPage]="previousPage" 
+        [nextPage]="nextPage" 
+        [selectedPage]="selectedPage" 
+        [pageSize]="pageSize"
+        [totalRows]="totalRows" 
+        [totalPages]="totalPages"
+    ></app-pagination>
+</div>
